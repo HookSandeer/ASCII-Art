@@ -2,35 +2,34 @@
 #! By HookSander
 
 from PIL import Image
+import time
+
+asciiChar =  " .'`^,:;Il!i><~+_-?][}{1)(|\/tfjrnxuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@"
 
 
 def importPicture(path) :
-    """
-    Args:
-        path (str): Chemin d'accès' de l'image
-
-    Returns:
-        PIL Image : L'image que nous allons convertir
-    """
     return Image.open(path)
 
 
 def resizePic(pic) :
-    """
-    Args:
-        pic (PIL Image): L'image original
-
-    Returns:
-        PIL Image: La même mais redimensioné en 480p, 16/9
-    """
-    return pic.resize((854, 480))
+    return pic.resize((256, 144))
 
 
-def getPixel(pic) :
-    print(pic.size)
+
+def monochrome(pic) :
+    return pic.convert("L")
 
 
-    
+def convertAscii(pic, char) :
+    for y in range(144) :
+        currentLine = ""
+        for x in range(256) :
+            pix = pic.getpixel((x, y))
+            sym = pix * 67 // 255
+            currentLine += char[sym] + " "
+        print(currentLine)
+        time.sleep(0.1)
+
 
 if __name__ == '__main__' :
     
@@ -41,4 +40,5 @@ if __name__ == '__main__' :
         print("Erreur durant le chargement de l'image")                 #?#  Arret si erreur
         exit()                                                          #?# ###
     
-    
+    monoPicture = monochrome(newPicture)
+    convertAscii(monoPicture, asciiChar)

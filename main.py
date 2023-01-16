@@ -6,7 +6,8 @@ from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 
 def picToAscii() :
-    listAscii = " .,:;*+?%$#@"
+    #listAscii = " .,:;*+?%$#@"
+    listAscii = " -oW#"
     finalText = ""
     win = Tk()
     win.withdraw()
@@ -26,9 +27,13 @@ def picToAscii() :
 
 
 def textToImage(text) :
-    img = Image.new("RGB", (1920, 1080), (0, 0, 0))
+    charWidth = 8
+    charHeight = 18
+    img = Image.new("RGB", (charWidth*128, charHeight*160), (0, 0, 0))
     image = ImageDraw.Draw(img)
     fontType = ImageFont.truetype('DejaVuSerif.ttf', 3)
     image.text((50, 50), text, (255, 255, 255), font=fontType)
     img.save("AsciiArt.jpg")
-     
+    
+
+textToImage(picToAscii())

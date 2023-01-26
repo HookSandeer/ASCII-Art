@@ -8,7 +8,7 @@
 from PIL import Image, ImageDraw
 
 # Import de Tkinter 
-from tkinter import Tk
+from tkinter import *
 
 # Import du module tkinter pour le choix de l'image (boite de dalogue)
 from tkinter.filedialog import askopenfilename

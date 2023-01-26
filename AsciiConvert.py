@@ -27,6 +27,9 @@ def chemin() :
     # Création de la fenêtre tkinter
     win = Tk()
     
+    # Nom de la fenêtre
+    win.title("Séléctionner l'image que vous souhaitez convertirs :")
+    
     # Appelle du module de la boite de dialogue
     win.withdraw()
     
@@ -42,6 +45,9 @@ def save(img) :
     """
     # Cration de la fenêtre tkinter
     win = Tk()
+    
+    # Nom de la fenêtre 
+    win.title("Choisissez le dossier d'enregistrement :")
     
     # Appelle du module de la boite de dialogue
     win.withdraw()

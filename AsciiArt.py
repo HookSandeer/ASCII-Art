@@ -10,6 +10,7 @@ from PIL import ImageDraw
 from tkinter import *
 from tkinter import filedialog
 from tkinter.filedialog import askopenfilename
+import sys
 
 
 # Script
@@ -57,12 +58,11 @@ def programme() :
 
 
     # Diviseur de la largeur et de la hauteur de l'image (Pour les proportions)
-    echelle = 0.09
+    echelle = 0.2
 
     # Largeur de chaque caractère en pixel, pour éviter que un M prenne plus de place qu'un i, décalant tout les lettres par exemple
-    largeurCara = 10
-    hauteurCara = 18
-
+    largeurCara = 8
+    hauteurCara = 16
 
     def caractere(num) :
         """En fonction du chiffre reçu en paramètre, renvoie le charactère correspondant
@@ -149,6 +149,7 @@ def programme() :
     # Enregistrement de l'image grâce a la fonction save.
     save(imageSortie)
     win.destroy()
+    sys.exit()
     exit()
 
 # Tkinter

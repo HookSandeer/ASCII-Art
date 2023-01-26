@@ -28,13 +28,13 @@ def chemin() :
     win = Tk()
     
     # Nom de la fenêtre
-    win.title("Séléctionner l'image que vous souhaitez convertirs :")
+    title = "Séléctionner l'image que vous souhaitez convertir :"
     
     # Appelle du module de la boite de dialogue
     win.withdraw()
     
-    # Renvoie du chemin d'accèes grâce au module de tkinter
-    return askopenfilename()
+    # Renvoie du chemin d'accèes grâce au module de tkinter, que jpg
+    return askopenfilename(filetypes=[('.JPG image files', '.jpg')], title=title)
 
 
 def save(img) :
@@ -47,13 +47,13 @@ def save(img) :
     win = Tk()
     
     # Nom de la fenêtre 
-    win.title("Choisissez le dossier d'enregistrement :")
+    title = "Choisissez le dossier d'enregistrement :"
     
     # Appelle du module de la boite de dialogue
     win.withdraw()
     
     # Récupère le chemin du dossier dans lequel le fichier image va être enregistré
-    dossierSelect = filedialog.askdirectory()
+    dossierSelect = filedialog.askdirectory(title=title)
     
     # Enregistrement dans le bon dossier, et défintion du nom de l'image
     img.save(dossierSelect+"/Ascii.png")

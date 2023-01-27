@@ -9,11 +9,16 @@ from PIL import Image as __Image
 from PIL import ImageDraw
 from tkinter import *
 from tkinter import filedialog
+from tkinter import messagebox
 from tkinter.filedialog import askopenfilename
 import sys
 
 
 # Script
+
+def quitter() :
+    win.destroy()
+    sys.exit()
 
 def programme() :
     def chemin() :
@@ -84,7 +89,13 @@ def programme() :
 
 
     # Importe l'image dans le programme
-    image = __Image.open(chemin())
+    try :
+        image = __Image.open(chemin())
+    except :
+        messagebox.showinfo(title='Info', message='Opération annulée\nFermeture du programme')
+        win.destroy()
+        sys.exit()
+        
 
     #!######
     # police = ImageFont.truetype('/font/AdobeVFPrototype.ttf', 15) => Pour police personnalisé, mais occasione trop de problème
@@ -147,10 +158,13 @@ def programme() :
 
 
     # Enregistrement de l'image grâce a la fonction save.
+
     save(imageSortie)
-    win.destroy()
-    sys.exit()
-    exit()
+    
+    messagebox.showinfo(title='Alerte', message='Enregistrement annulé.\nFermeture du programe')
+    
+
+
 
 # Tkinter
 win = Tk()
@@ -168,5 +182,10 @@ instruction2.place(x=50, y=150)
 
 lancement = Button(win, text="Lancer le convertisseur", font=('Arial', 20), command=programme)
 lancement.place(x=250, y=250)
+
+
+quitter = Button(win, text='Quitter', font=('Arial', 10), command=quitter)
+quitter.place(x=380, y=350)
+
 
 win.mainloop()

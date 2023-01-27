@@ -155,13 +155,17 @@ def programme() :
             # Définition de la coordonnée de placement en fonction du variant de boucle, et de la largeur et hauteur du caractère pour que ce soit 
             # espacé de façon égale.
             imageActuelle.text((x*largeurCara, y*hauteurCara), caractere(c), fill = (r, v, b))
+    
+    messagebox.showinfo(title='Info', message='Convertion terminé')
 
 
     # Enregistrement de l'image grâce a la fonction save.
-
-    save(imageSortie)
-    
-    messagebox.showinfo(title='Alerte', message='Enregistrement annulé.\nFermeture du programe')
+    try :
+        save(imageSortie)
+    except :
+        messagebox.showerror(title='Alerte', message='Enregistrement annulé.\nFermeture du programe')
+        win.destroy()
+        sys.exit()
     
 
 

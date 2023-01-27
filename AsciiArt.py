@@ -136,7 +136,7 @@ def programme() :
     pixel = resizeImage.load()
 
     # Créer une nouvelle image dans laquelle les lettres vont être écrite au fur et a mesur. Les dimensions de celle ci sont dans le second paramètre
-    imageSortie = __Image.new('RGB', (largeurCara * largeur, hauteurCara * hauteur), color = (0, 0, 0))
+    imageSortie = __Image.new('RGB', (largeurCara * largeur, hauteurCara * hauteur), color = (20, 20, 20))
     imageActuelle = ImageDraw.Draw(imageSortie)
 
     # Double boucle (chaque ligne x le nombre de ligne (soit x et y))

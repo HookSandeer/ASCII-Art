@@ -35,7 +35,7 @@ Si vous souhaitez executer via le code python, il faut :
 <br>
 <br>
 <br>
-Une fois les modules installés, il suffit d'executer le code python :
+__Une fois les modules installés, il suffit d'executer le code python :__
 <br>
 - Soit via : 
     - L'explorateur de fichier : clique droit -> ouvrir avec -> python

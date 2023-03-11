@@ -10,7 +10,7 @@ chaque pixel de l'image en une lettre plus ou moins imposante, qui reprend la co
 [Image après convertion](https://github.com/HookSandeer/ASCII-Art/blob/main/Asset/after.png "photo")
 ## Comment ça fonctionne ?
 
-Le fonctionnement du programme est très simple, voici comment procéder :
+__Le fonctionnement du programme est très simple, voici comment procéder :__
 <br>
 <br>
 - Lancer le programme, soit le fichier python, ou alors l'executable windows
@@ -21,7 +21,7 @@ Le fonctionnement du programme est très simple, voici comment procéder :
 
 ## Comment l'installer ?
 
-Il suffit de télécharger la dernière version [ici](https://github.com/HookSandeer/ASCII-Art/releases), et de lancer l'application,
+__Il suffit de télécharger la dernière version [ici](https://github.com/HookSandeer/ASCII-Art/releases), et de lancer l'application.__
 <br>
 <br>
 Si vous souhaitez executer via le code python, il faut :

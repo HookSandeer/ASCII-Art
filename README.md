@@ -5,6 +5,8 @@
 Le convertisseur d'image en ASCII-ART est un programme qui convertis, après redimmension, <br>
 chaque pixel de l'image en une lettre plus ou moins imposante, qui reprend la couleur original du pixel.<br><br>
 
+## Exemple :
+[Avant convertisseur](https://github.com/HookSandeer/ASCII-Art/blob/main/Asset/before.jpg "photo")
 ## Comment ça fonctionne ?
 
 Le fonctionnement du programme est très simple, voici comment procéder :

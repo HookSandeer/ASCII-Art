@@ -28,10 +28,14 @@ Si vous souhaitez executer via le code python, il faut :
 - Un interpreteur python sur votre machine (Téléchargeable [ici](https://www.python.org/downloads/))
 - Verifier que le module Tkinter soit installer (normalement le cas sur toute les machines)
 - Vérifier que le module Pillow (pour le traitement d'image) soit installer
-    - Pour l'installer : ouvrir un terminal (comme powershell) et entrer la commande suivante : ```$ pip install pillow```
+    - Pour l'installer : ouvrir un terminal (comme powershell) et entrer la commande suivante :
+    <br>
+     ```$ pip install pillow```
 <br>
 Une fois les modules installés, il suffit d'executer le code python :
+<br>
 - Soit via : 
     - L'explorateur de fichier : clique droit -> ouvrir avec -> python
-    - Un terminal : ```$ python ./main.py```
-        - (Attention d'être dans le même dossier que le script)
+    - Un terminal (Attention d'être dans le même dossier que le script) :
+    <br>
+     ```$ python ./main.py```

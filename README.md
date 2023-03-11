@@ -13,4 +13,5 @@ Le fonctionnement du programme est très simple, voici comment procéder :
 - Lancer le programme, soit le fichier python, ou alors l'executable windows
 - Choisir une image, et l'ouvrir dans le programme
     - L'image doit être au format JPEG (.jpg)
-    - Si l'image est trop petite, le rendu sera moyen
+    - Si l'image est trop petite, le rendu sera petit
+- Vous pouvez soit afficher l'image, soit l'enregister en format .png

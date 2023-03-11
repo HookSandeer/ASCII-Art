@@ -33,6 +33,8 @@ Si vous souhaitez executer via le code python, il faut :
 
 ```$ pip install pillow```
 <br>
+<br>
+<br>
 Une fois les modules installés, il suffit d'executer le code python :
 <br>
 - Soit via : 

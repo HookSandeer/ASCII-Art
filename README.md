@@ -7,6 +7,8 @@ chaque pixel de l'image en une lettre plus ou moins imposante, qui reprend la co
 
 ## Exemple :
 [Image original](https://github.com/HookSandeer/ASCII-Art/blob/main/Asset/before.jpg "photo")
+<br>
+<br>
 [Image après convertion](https://github.com/HookSandeer/ASCII-Art/blob/main/Asset/after.png "photo")
 ## Comment ça fonctionne ?
 

@@ -193,7 +193,7 @@ title.pack()
 instruction1 = Label(win, text=' 1 - Lancer le programme, séléctionner une image au format *.jpg')
 instruction1.place(x=50, y=100)
 
-instruction2 = Label(win, text="2 - Une boite de dialogue s'ouvre, choisissez l'emplacement d'enregistrent" )
+instruction2 = Label(win, text="2 - Une fois la convertion terminé, vous pouvez soit afficher l'image, \nou l'enregistrer." )
 instruction2.place(x=50, y=150)
 
 # Bouton de lancement du programme (lance la fonction main)

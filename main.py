@@ -45,6 +45,19 @@ def main() :
         return askopenfilename(filetypes=[('.JPG image files', '.jpg')], title=title)
         # Renvoie du chemin d'accèes grâce au module de tkinter, que jpg
 
+    def savePath() :
+        """Ouvre une fenêtre de dialogue
+        L'utilisateur choisit le dossier et le nom d'enregistrement de l'image
+
+        Returns:
+            str : Chemin et nom de l'image a enregistrer
+        """
+        win = Tk()                                                      # Création de la fenêtre tkinter
+        title = "Enregistrement :"                                      # Variable du nom de la fenêtre
+        win.withdraw()                                                  # Appelle du module de la boite de dialogue
+        return filedialog.asksaveasfilename(filetypes=[('Ascii Art Image', '*.png')], defaultextension='.png', title=title)
+        # Récupère le chemin d'accès, et le nom que l'utilisateur a choisit pour son image
+    
 
     def save(img) :
         """Enregistre l'image dans le dossier séléctionner via une boite de dialogue
@@ -62,11 +75,7 @@ def main() :
         # Demande a l'utilisateur si il souhaite enregistrer l'image :
         userChoice = messagebox.askyesno(title="Enregistrement ?", message="Souhaitez vous enregistrer l'image ?")
         if userChoice :
-            win = Tk()                                                  # Cration de la fenêtre tkinter
-            title = "Choisissez le dossier d'enregistrement :"          # Variable du nom de la fenêtre
-            win.withdraw()                                              # Appelle du module de la boite de dialogue
-            dossierSelect = filedialog.askdirectory(title=title)        # Récupère le chemin du dossier dans lequel le fichier image va être enregistrée
-            img.save(dossierSelect+"/Ascii.png")                        # Enregistrement dans le bon dossier, et défintion du nom de l'image
+            img.save(savePath())                        # Enregistrement dans le bon dossier, et défintion du nom de l'image
             messagebox.showinfo(title="Info", message="Enregistrement terminée.")
             # Informe l'utilisateur que l'enregistrement est terminée.
         return 0

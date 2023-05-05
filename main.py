@@ -13,6 +13,8 @@ import sys                                      # Pour arreter le processus pyth
 
 # Script
 
+global bgImage
+
 def quitter() :
     """Lors de l'appelle, ferme la fenêtre principal tkinter, et stop le processus python
 
@@ -111,30 +113,27 @@ def main() :
         """
         # Définition des variable hauteur et largeur pour pourvoir garder les proportions
         diviseurVal = [None]
-        
         def getScaleValue() :
             """Récupère la valeur du curseur, et la stock dans la liste global diviseulVal
             """
             diviseurVal[0] = scale.get()                                       # .get() pour récupérer la valeur
-            root.quit()                                                        # .quit() pour stopper le mainloop, et ainsi fermer la fenêtre
+            root.quit()                                                        # .quit() pour stopper le mainloop
+            root.destroy()                                                     # .destroy() pour fermer la fenêtres
         
         root = Tk()                                                            # Création d'une nouvelle fenêtre
         root.title("Qualité de convertion")                                    # Titre de la fenêtre
-        root.geometry("350x150")                                               # Taille de la fenêtre
-        root.minsize(350, 150)                                                 # Taille minimum de la fenêtre (Pour que l'utilisateur ne puisse pas la rétraicir)
-        root.maxsize(350, 150)                                                 # Taille maximum de la fenêtre (Pour que l'utilisateur ne puisse pas l'agrandir)
+        root.geometry("700x300")                                               # Taille de la fenêtre
+        root.minsize(700, 300)                                                 # Taille minimum de la fenêtre (Pour que l'utilisateur ne puisse pas la rétraicir)
+        root.maxsize(700, 300)                                                 # Taille maximum de la fenêtre (Pour que l'utilisateur ne puisse pas l'agrandir)
         
-        # Création d'un widget titre pour expliquer le contenu de la fenêtre
-        text = Label(root, text="Ajuster (En %) la quantité \nde pixel conservés", font=('Arial', 10))
-        text.pack() # Affichage du wdget (pack car peu d'éléments)
         
         # Création du curseul, valeur allant de 1 à 100, avec une longueur de 250 pixel
-        scale = Scale(root, from_=1, to=100, orient=HORIZONTAL, length=250)
-        scale.pack(pady=10)     # Affichage du curseur
+        scale = Scale(root, from_=1, to=100, orient=HORIZONTAL, length=500)
+        scale.place(x=100, y=150)     # Affichage du curseur
         
         # Création d'un bouton pour valider la valeur du curseur, en appelant la fonction getScaleValue (ligne 115)
         button = Button(root, text="Valider", command=getScaleValue)
-        button.pack(pady=10)    # Affichage du bouton
+        button.place(x=300, y=250)          # Affichage du bouton
         
         root.mainloop()     # Lancement de la fenêtre
         
@@ -211,32 +210,24 @@ win = Tk()
 # Titre
 win.title("Générateur ASCII Art")
 # Dimmension
-win.geometry('800x400')
-win.minsize(800, 400)
-win.maxsize(800, 400)
+win.geometry('800x450')
+win.minsize(800, 450)
+win.maxsize(800, 450)
+
+# Background Image :
+bgImage = PhotoImage(file='Asset/Background.gif')
+bgLabel = Label(win, image=bgImage)
+bgLabel.place(x=0, y=0, relwidth=1, relheight=1)
 
 
-# Titre
-title = Label(win, text='Image en ASCII Art', font=('Arial', 30), fg='black')
-title.pack()
-
-# Instruction pour utilisateur
-instruction1 = Label(win, text=' 1 - Lancer le programme, séléctionner une image au format *.jpg', font=('Arial', 15))
-instruction1.place(x=50, y=100)
-
-instruction2 = Label(win, text=' 2 - Choisissez le pourcentage de pixel conservés pour l\'ASCII Art', font=('Arial', 15))
-instruction2.place(x=50, y=150)
-
-instruction3 = Label(win, text="3 - Une fois la convertion terminé, vous pouvez soit afficher l'image, \nou l'enregistrer.", font=('Arial', 15))
-instruction3.place(x=50, y=200)
 
 # Bouton de lancement du programme (lance la fonction main)
-lancement = Button(win, text="Lancer le convertisseur", font=('Arial', 20),bg='#ADD8E6' ,command=main)
-lancement.place(x=250, y=275)
+lancement = Button(win, text="Lancer le convertisseur", font=('Arial', 20), command=main)
+lancement.place(x=250, y=315)
 
 # Bouton pour quitter le programme (lance la fonction quitter)
-quitter = Button(win, text='Quitter', font=('Arial', 10),bg='red' ,command=quitter)
-quitter.place(x=380, y=350)
+quitter = Button(win, text='Quitter', font=('Arial', 10), command=quitter)
+quitter.place(x=380, y=400)
 
 # Affichage de la fenêtre principal
 win.mainloop()

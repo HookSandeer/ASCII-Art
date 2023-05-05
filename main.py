@@ -96,13 +96,13 @@ def main() :
         return listChar[num*len(listChar)//256]                         # Renvoie du bon caractère de la liste, en fonction de la bonne nuance de gris (256 pour éviter le out of range)
 
 
-    def resize(img, diviseur, larg, haut) :
+    def resize(img, larg, haut) :
         """Redimensionne l'image en fonction des paramètre pour qu'elle n'ai pas un nombre trop important de pixel
         afin que les caractère ascii soit encore visible, gros tas de lettre dans le cas contraire.
+        L'utilisateur choisit le pourcentage de pixel qui seront conservés.
 
         Args:
             img (Pillow Image) : Image a redimensionner
-            diviseur (float) : Echelle de redimension
             larg (int) : Largeur d'un caractère en pixel(pour conserver les proportions de l'image original)
             haut (int) : Hauteur d'un caractère en pixel (pour conserver les proportions de l'image original)
 
@@ -110,13 +110,44 @@ def main() :
             Pillow Image: Même image, mais redimensionnée
         """
         # Définition des variable hauteur et largeur pour pourvoir garder les proportions
-        largeur = img.width
-        hauteur = img.height
+        diviseurVal = [None]
+        
+        def getScaleValue() :
+            """Récupère la valeur du curseur, et la stock dans la liste global diviseulVal
+            """
+            diviseurVal[0] = scale.get()                                       # .get() pour récupérer la valeur
+            root.quit()                                                        # .quit() pour stopper le mainloop, et ainsi fermer la fenêtre
+        
+        root = Tk()                                                            # Création d'une nouvelle fenêtre
+        root.title("Qualité de convertion")                                    # Titre de la fenêtre
+        root.geometry("350x150")                                               # Taille de la fenêtre
+        root.minsize(350, 150)                                                 # Taille minimum de la fenêtre (Pour que l'utilisateur ne puisse pas la rétraicir)
+        root.maxsize(350, 150)                                                 # Taille maximum de la fenêtre (Pour que l'utilisateur ne puisse pas l'agrandir)
+        
+        # Création d'un widget titre pour expliquer le contenu de la fenêtre
+        text = Label(root, text="Ajuster (En %) la quantité \nde pixel conservés", font=('Arial', 10))
+        text.pack() # Affichage du wdget (pack car peu d'éléments)
+        
+        # Création du curseul, valeur allant de 1 à 100, avec une longueur de 250 pixel
+        scale = Scale(root, from_=1, to=100, orient=HORIZONTAL, length=250)
+        scale.pack(pady=10)     # Affichage du curseur
+        
+        # Création d'un bouton pour valider la valeur du curseur, en appelant la fonction getScaleValue (ligne 115)
+        button = Button(root, text="Valider", command=getScaleValue)
+        button.pack(pady=10)    # Affichage du bouton
+        
+        root.mainloop()     # Lancement de la fenêtre
+        
+        diviseur = diviseurVal[0]/100       # Déclaration de la variable diviseur pour le calcule de la redimension (/100 car valeur de la liste en pourcentage)
 
+        largeur = img.width                 # Largeur de l'image
+        hauteur = img.height                # Hauteur de l'image
+        
         # Redimension, int pour ne pas avoir des float, et Image.NEAREST permet de paufiner les proportions pour éviter tout déséquilibre.
         img = img.resize((int(diviseur*largeur), int(diviseur*hauteur*(larg/haut))), __Image.NEAREST)
 
         return img
+        
 
 
     # Importe l'image dans le programme
@@ -124,13 +155,12 @@ def main() :
         image = __Image.open(chemin())                                  # Import l'image dans le programme a l'aide de Pillow, chemin() renvoie le chemin d'accès absolu.
     except :                                                            # Si l'utilisateur clique sur "annuler", récupere l'erreur
         messagebox.showinfo(title='Info', message='Opération annulée')  # Informe que le programme a bien prit en compte l'annulation
-
-
-    echelle = 0.2                                                       # Diviseur de la largeur et de la hauteur de l'image (Pour les proportions)
+        
+    
     # Largeur de chaque caractère en pixel, pour éviter que un M prenne plus de place qu'un i, décalant tout les lettres par exemple
     largeurCara = 8
     hauteurCara = 16
-    resizeImage = resize(image, echelle, largeurCara, hauteurCara)
+    resizeImage = resize(image, largeurCara, hauteurCara)
 
     # Redéfinie les nouvelles variables d'hauteur et de largeur suite a la redimension
     largeur = resizeImage.width
@@ -175,7 +205,6 @@ def main() :
 
 
 
-
 # Tkinter
 # Création de la fenêtre :
 win = Tk()
@@ -183,6 +212,8 @@ win = Tk()
 win.title("Générateur ASCII Art")
 # Dimmension
 win.geometry('800x400')
+win.minsize(800, 400)
+win.maxsize(800, 400)
 
 
 # Titre
@@ -190,18 +221,21 @@ title = Label(win, text='Image en ASCII Art', font=('Arial', 30), fg='black')
 title.pack()
 
 # Instruction pour utilisateur
-instruction1 = Label(win, text=' 1 - Lancer le programme, séléctionner une image au format *.jpg')
+instruction1 = Label(win, text=' 1 - Lancer le programme, séléctionner une image au format *.jpg', font=('Arial', 15))
 instruction1.place(x=50, y=100)
 
-instruction2 = Label(win, text="2 - Une fois la convertion terminé, vous pouvez soit afficher l'image, \nou l'enregistrer." )
+instruction2 = Label(win, text=' 2 - Choisissez le pourcentage de pixel conservés pour l\'ASCII Art', font=('Arial', 15))
 instruction2.place(x=50, y=150)
 
+instruction3 = Label(win, text="3 - Une fois la convertion terminé, vous pouvez soit afficher l'image, \nou l'enregistrer.", font=('Arial', 15))
+instruction3.place(x=50, y=200)
+
 # Bouton de lancement du programme (lance la fonction main)
-lancement = Button(win, text="Lancer le convertisseur", font=('Arial', 20), command=main)
-lancement.place(x=250, y=250)
+lancement = Button(win, text="Lancer le convertisseur", font=('Arial', 20),bg='#ADD8E6' ,command=main)
+lancement.place(x=250, y=275)
 
 # Bouton pour quitter le programme (lance la fonction quitter)
-quitter = Button(win, text='Quitter', font=('Arial', 10), command=quitter)
+quitter = Button(win, text='Quitter', font=('Arial', 10),bg='red' ,command=quitter)
 quitter.place(x=380, y=350)
 
 # Affichage de la fenêtre principal

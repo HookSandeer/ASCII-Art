@@ -3,6 +3,7 @@
 
 #### IMPORTS ####
 from PIL import Image as __Image                # Importe la gestion d'image Pillow sous la variable __Image
+from PIL import ImageTk as __ImageTK
 from PIL import ImageDraw                       # Importe l'outil de création d'image du module Pillow
 from tkinter import *                           # Importe le module tkinter
 from tkinter import filedialog                  # Pour l'enregistrement, sert a séléctionner le dossier
@@ -11,9 +12,10 @@ from tkinter import messagebox                  # Pour afficher les différents 
 import sys                                      # Pour arreter le processus python
 
 
-# Script
 
-global bgImage
+
+
+# Script
 
 def quitter() :
     """Lors de l'appelle, ferme la fenêtre principal tkinter, et stop le processus python
@@ -97,9 +99,10 @@ def main() :
         listChar = list(asciiChar)                                      # Convertion de la variable string en list, pour une manipulation plus simple
         return listChar[num*len(listChar)//256]                         # Renvoie du bon caractère de la liste, en fonction de la bonne nuance de gris (256 pour éviter le out of range)
 
-
+    
     def resize(img, larg, haut) :
-        """Redimensionne l'image en fonction des paramètre pour qu'elle n'ai pas un nombre trop important de pixel
+        """
+        Redimensionne l'image en fonction des paramètre pour qu'elle n'ai pas un nombre trop important de pixel
         afin que les caractère ascii soit encore visible, gros tas de lettre dans le cas contraire.
         L'utilisateur choisit le pourcentage de pixel qui seront conservés.
 
@@ -113,40 +116,43 @@ def main() :
         """
         # Définition des variable hauteur et largeur pour pourvoir garder les proportions
         diviseurVal = [None]
+
         def getScaleValue() :
             """Récupère la valeur du curseur, et la stock dans la liste global diviseulVal
             """
             diviseurVal[0] = scale.get()                                       # .get() pour récupérer la valeur
-            root.quit()                                                        # .quit() pour stopper le mainloop
-            root.destroy()                                                     # .destroy() pour fermer la fenêtres
-        
+            root.quit()                                                        # .quit() pour stopper le mainloop, et ainsi fermer la fenêtre
+
         root = Tk()                                                            # Création d'une nouvelle fenêtre
         root.title("Qualité de convertion")                                    # Titre de la fenêtre
-        root.geometry("700x300")                                               # Taille de la fenêtre
-        root.minsize(700, 300)                                                 # Taille minimum de la fenêtre (Pour que l'utilisateur ne puisse pas la rétraicir)
-        root.maxsize(700, 300)                                                 # Taille maximum de la fenêtre (Pour que l'utilisateur ne puisse pas l'agrandir)
-        
-        
+        root.geometry("350x150")                                               # Taille de la fenêtre
+        root.minsize(350, 150)                                                 # Taille minimum de la fenêtre (Pour que l'utilisateur ne puisse pas la rétraicir)
+        root.maxsize(350, 150)                                                 # Taille maximum de la fenêtre (Pour que l'utilisateur ne puisse pas l'agrandir)
+
+        # Création d'un widget titre pour expliquer le contenu de la fenêtre
+        text = Label(root, text="Ajuster (En %) la quantité \nde pixel conservés", font=('Arial', 10))
+        text.pack() # Affichage du wdget (pack car peu d'éléments)
+
         # Création du curseul, valeur allant de 1 à 100, avec une longueur de 250 pixel
-        scale = Scale(root, from_=1, to=100, orient=HORIZONTAL, length=500)
-        scale.place(x=100, y=150)     # Affichage du curseur
-        
+        scale = Scale(root, from_=1, to=100, orient=HORIZONTAL, length=250)
+        scale.pack(pady=10)     # Affichage du curseur
+
         # Création d'un bouton pour valider la valeur du curseur, en appelant la fonction getScaleValue (ligne 115)
         button = Button(root, text="Valider", command=getScaleValue)
-        button.place(x=300, y=250)          # Affichage du bouton
-        
+        button.pack(pady=10)    # Affichage du bouton
+
         root.mainloop()     # Lancement de la fenêtre
-        
+
         diviseur = diviseurVal[0]/100       # Déclaration de la variable diviseur pour le calcule de la redimension (/100 car valeur de la liste en pourcentage)
 
         largeur = img.width                 # Largeur de l'image
         hauteur = img.height                # Hauteur de l'image
-        
+
         # Redimension, int pour ne pas avoir des float, et Image.NEAREST permet de paufiner les proportions pour éviter tout déséquilibre.
         img = img.resize((int(diviseur*largeur), int(diviseur*hauteur*(larg/haut))), __Image.NEAREST)
 
         return img
-        
+
 
 
     # Importe l'image dans le programme
@@ -218,6 +224,7 @@ win.maxsize(800, 450)
 bgImage = PhotoImage(file='Asset/Background.gif')
 bgLabel = Label(win, image=bgImage)
 bgLabel.place(x=0, y=0, relwidth=1, relheight=1)
+
 
 
 

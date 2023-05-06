@@ -3,7 +3,6 @@
 
 #### IMPORTS ####
 from PIL import Image as __Image                # Importe la gestion d'image Pillow sous la variable __Image
-from PIL import ImageTk as __ImageTK
 from PIL import ImageDraw                       # Importe l'outil de création d'image du module Pillow
 from tkinter import *                           # Importe le module tkinter
 from tkinter import filedialog                  # Pour l'enregistrement, sert a séléctionner le dossier
@@ -124,22 +123,23 @@ def main() :
             root.quit()                                                        # .quit() pour stopper le mainloop, et ainsi fermer la fenêtre
 
         root = Tk()                                                            # Création d'une nouvelle fenêtre
+        root.configure(bg='#282828')
         root.title("Qualité de convertion")                                    # Titre de la fenêtre
         root.geometry("350x150")                                               # Taille de la fenêtre
-        root.minsize(350, 150)                                                 # Taille minimum de la fenêtre (Pour que l'utilisateur ne puisse pas la rétraicir)
-        root.maxsize(350, 150)                                                 # Taille maximum de la fenêtre (Pour que l'utilisateur ne puisse pas l'agrandir)
+        root.minsize(700, 300)                                                 # Taille minimum de la fenêtre (Pour que l'utilisateur ne puisse pas la rétraicir)
+        root.maxsize(700, 300)                                                 # Taille maximum de la fenêtre (Pour que l'utilisateur ne puisse pas l'agrandir)
 
         # Création d'un widget titre pour expliquer le contenu de la fenêtre
-        text = Label(root, text="Ajuster (En %) la quantité \nde pixel conservés", font=('Arial', 10))
+        text = Label(root, text="Ajuster (En %) la quantité de pixel conservés", font=('Arial', 20), bg='#282828', fg='white')
         text.pack() # Affichage du wdget (pack car peu d'éléments)
 
         # Création du curseul, valeur allant de 1 à 100, avec une longueur de 250 pixel
-        scale = Scale(root, from_=1, to=100, orient=HORIZONTAL, length=250)
-        scale.pack(pady=10)     # Affichage du curseur
+        scale = Scale(root, from_=1, to=100, orient=HORIZONTAL, length=500, troughcolor='#282828', bg='white')
+        scale.pack(pady=50)     # Affichage du curseur
 
         # Création d'un bouton pour valider la valeur du curseur, en appelant la fonction getScaleValue (ligne 115)
-        button = Button(root, text="Valider", command=getScaleValue)
-        button.pack(pady=10)    # Affichage du bouton
+        button = Button(root, text="Valider", font=('Arial', 20), width=10, height=2 ,bg='#282828', fg='white', command=getScaleValue)
+        button.pack()    # Affichage du bouton
 
         root.mainloop()     # Lancement de la fenêtre
 

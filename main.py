@@ -9,8 +9,7 @@ from tkinter import filedialog                  # Pour l'enregistrement, sert a 
 from tkinter.filedialog import askopenfilename  # Pour l'ouverture, sert a récupérer le chemin absolue de l'image
 from tkinter import messagebox                  # Pour afficher les différents boites de dialogues
 import sys                                      # Pour arreter le processus python
-
-
+import os                                       # Pour la création de l'executable
 
 
 
@@ -209,6 +208,21 @@ def main() :
     return 0
 
 
+def resource_path(relativePath):
+    """
+    Args :
+        string : Chemin d'accès relatif de la ressource
+    Returns:
+        string : Chemin d'accès absolue de la ressource
+    """
+    try:
+        # PyInstaller créer un dossier temporaire et le met dans _MEIPASS
+        basePath = sys._MEIPASS
+    except Exception:
+        basePath = os.path.abspath(".")
+
+    return os.path.join(basePath, relativePath)
+
 
 # Tkinter
 # Création de la fenêtre :
@@ -221,7 +235,7 @@ win.minsize(800, 450)
 win.maxsize(800, 450)
 
 # Background Image :
-bgImage = PhotoImage(file='Asset/background.gif')
+bgImage = PhotoImage(file=resource_path('background.gif'))
 bgLabel = Label(win, image=bgImage)
 bgLabel.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -243,7 +257,7 @@ win.mainloop()
 """
 INFORMATION :
 
-Ce programme utilise 2 module python, tkinter et Pillow
+Ce programme utilise 4 module python, tkinter,  Pillow, sys, os
 Ils sont souvent déjà installés sur les machines, mais ce n'est pas tout le temps le cas pour Pillow
 Pour installer pillow :
     - Ouvrir un terminal comme powershell ou cmd

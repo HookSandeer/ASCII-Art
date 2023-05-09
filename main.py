@@ -221,7 +221,7 @@ win.minsize(800, 450)
 win.maxsize(800, 450)
 
 # Background Image :
-bgImage = PhotoImage(file='Asset/Background.gif')
+bgImage = PhotoImage(file='Asset/background.gif')
 bgLabel = Label(win, image=bgImage)
 bgLabel.place(x=0, y=0, relwidth=1, relheight=1)
 
